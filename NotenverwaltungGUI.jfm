@@ -1,0 +1,271 @@
+object NotenverwaltungGUI: TFGUIFormular
+  Left = 385
+  Top = 71
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 
+    'B:\Anwendungssysteme\Arbeitsaufgabe Notenverwaltung\Notenverwalt' +
+    'ungGUI.jfm'
+  ClientHeight = 462
+  ClientWidth = 584
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  OldCreateOrder = True
+  Position = poDesigned
+  Visible = True
+  WindowState = wsMaximized
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnResize = FormResize
+  PixelsPerInch = 96
+  TextHeight = 16
+  object pnl_Faecher: TPanel
+    Tag = 12
+    Left = 0
+    Top = 0
+    Width = 185
+    Height = 305
+    HelpType = htKeyword
+    Caption = 'pnl_Faecher'
+    ParentBackground = False
+    TabOrder = 0
+    object jLabel1: TLabel
+      Tag = 1
+      Left = 24
+      Top = 8
+      Width = 52
+      Height = 16
+      HelpType = htKeyword
+      Caption = 'F'#228'cher'
+    end
+    object jLabel10: TLabel
+      Tag = 1
+      Left = 80
+      Top = 8
+      Width = 102
+      Height = 16
+      HelpType = htKeyword
+      Alignment = taRightJustify
+      Caption = '(Wunsch-) Note'
+    end
+  end
+  object pnl_Fach_hinzufuegen: TPanel
+    Tag = 12
+    Left = 0
+    Top = 304
+    Width = 185
+    Height = 161
+    HelpType = htKeyword
+    Caption = 'pnl_Fach_hinzufuegen'
+    ParentBackground = False
+    TabOrder = 1
+    object jLabel2: TLabel
+      Tag = 1
+      Left = 40
+      Top = 8
+      Width = 106
+      Height = 16
+      HelpType = htKeyword
+      Caption = 'Fach hinzuf'#252'gen'
+    end
+    object jLabel3: TLabel
+      Tag = 1
+      Left = 8
+      Top = 32
+      Width = 74
+      Height = 16
+      HelpType = htKeyword
+      Caption = 'Fachname'
+    end
+    object jLabel4: TLabel
+      Tag = 1
+      Left = 8
+      Top = 80
+      Width = 84
+      Height = 16
+      HelpType = htKeyword
+      Caption = 'Wunschnote'
+    end
+    object tfd_fachname: TEdit
+      Tag = 2
+      Left = 8
+      Top = 48
+      Width = 169
+      Height = 24
+      HelpType = htKeyword
+      ReadOnly = True
+      TabOrder = 0
+    end
+    object nfd_wunschnote: TEdit
+      Tag = 2
+      Left = 8
+      Top = 96
+      Width = 169
+      Height = 24
+      HelpType = htKeyword
+      ReadOnly = True
+      TabOrder = 1
+    end
+    object btn_Fach_hinzufuegen: TButton
+      Tag = 4
+      Left = 8
+      Top = 128
+      Width = 169
+      Height = 25
+      HelpType = htKeyword
+      Caption = 'Fach hinzuf'#252'gen'
+      TabOrder = 2
+    end
+  end
+  object pnl_Noten: TPanel
+    Tag = 12
+    Left = 184
+    Top = 0
+    Width = 401
+    Height = 305
+    HelpType = htKeyword
+    Caption = 'pnl_Noten'
+    ParentBackground = False
+    TabOrder = 2
+    object jLabel11: TLabel
+      Tag = 1
+      Left = 8
+      Top = 8
+      Width = 160
+      Height = 16
+      HelpType = htKeyword
+      Caption = '  NP Gewichtung Leistung'
+    end
+    object btn_File_waehlen: TButton
+      Tag = 4
+      Left = 304
+      Top = 0
+      Width = 91
+      Height = 25
+      HelpType = htKeyword
+      Caption = 'Datei '#246'ffnen'
+      TabOrder = 0
+    end
+  end
+  object pnl_Note_hinzufuegen: TPanel
+    Tag = 12
+    Left = 184
+    Top = 304
+    Width = 401
+    Height = 161
+    HelpType = htKeyword
+    Caption = 'pnl_Note_hinzufuegen'
+    ParentBackground = False
+    TabOrder = 3
+    object jLabel5: TLabel
+      Tag = 1
+      Left = 8
+      Top = 8
+      Width = 105
+      Height = 16
+      HelpType = htKeyword
+      Caption = 'Note hinzuf'#252'gen'
+    end
+    object jLabel6: TLabel
+      Tag = 1
+      Left = 8
+      Top = 40
+      Width = 86
+      Height = 16
+      HelpType = htKeyword
+      Caption = 'Notenpunkte'
+    end
+    object jLabel7: TLabel
+      Tag = 1
+      Left = 8
+      Top = 64
+      Width = 60
+      Height = 16
+      HelpType = htKeyword
+      Caption = 'Leistung'
+    end
+    object jLabel8: TLabel
+      Tag = 1
+      Left = 8
+      Top = 88
+      Width = 79
+      Height = 16
+      HelpType = htKeyword
+      Caption = 'Gewichtung'
+    end
+    object jLabel9: TLabel
+      Tag = 1
+      Left = 8
+      Top = 136
+      Width = 40
+      Height = 16
+      HelpType = htKeyword
+      Caption = 'Fach'
+    end
+    object nfd_notenpunkte: TEdit
+      Tag = 2
+      Left = 112
+      Top = 32
+      Width = 145
+      Height = 24
+      HelpType = htKeyword
+      ReadOnly = True
+      TabOrder = 0
+    end
+    object tfd_leistung: TEdit
+      Tag = 2
+      Left = 112
+      Top = 56
+      Width = 145
+      Height = 24
+      HelpType = htKeyword
+      ReadOnly = True
+      TabOrder = 1
+    end
+    object nfd_gewichtung: TEdit
+      Tag = 2
+      Left = 112
+      Top = 80
+      Width = 145
+      Height = 24
+      HelpType = htKeyword
+      ReadOnly = True
+      TabOrder = 2
+    end
+    object cbx_klausur: TCheckBox
+      Tag = 5
+      Left = 112
+      Top = 104
+      Width = 97
+      Height = 17
+      HelpType = htKeyword
+      Caption = 'Klausur'
+      TabOrder = 3
+    end
+    object cbx_Fachname: TComboBox
+      Tag = 9
+      Left = 112
+      Top = 128
+      Width = 145
+      Height = 24
+      HelpType = htKeyword
+      ItemHeight = 16
+      TabOrder = 4
+      Text = 'cbx_Fachname'
+    end
+    object btn_Note_hinzufuegen: TButton
+      Tag = 4
+      Left = 264
+      Top = 32
+      Width = 129
+      Height = 121
+      HelpType = htKeyword
+      Caption = 'Note eintragen'
+      TabOrder = 5
+    end
+  end
+end
