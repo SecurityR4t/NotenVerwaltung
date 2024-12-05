@@ -7,7 +7,7 @@ import java.util.*;
 
 /**
  * 
- * Die Benutzeroberfläche des Notenrechners
+ * Die BenutzeroberflÃ¤che des Notenrechners
  * 
  * @version 1.0 vom 18.08.2011
  * @author Tenbusch
@@ -75,18 +75,18 @@ public class NotenverwaltungGUI extends JFrame {
     this.datei = datei;
     // Anfang Komponenten
 
-    // Panel hinzufügen
+    // Panel hinzufÃ¼gen
     pnl_Faecher.setBounds(0, 0, 185, 305);
-    //TODO Farbe des Panels hinzufügen
+    //TODO Farbe des Panels hinzufÃ¼gen
     cp.add(pnl_Faecher);
     pnl_Fach_hinzufuegen.setBounds(0, 304, 185, 161);
-    //TODO Farbe des Panels hinzufügen
+    //TODO Farbe des Panels hinzufÃ¼gen
     cp.add(pnl_Fach_hinzufuegen);
     pnl_Noten.setBounds(184, 0, 401, 305);
-    //TODO Farbe des Panels hinzufügen
+    //TODO Farbe des Panels hinzufÃ¼gen
     cp.add(pnl_Noten);
     pnl_Note_hinzufuegen.setBounds(184, 304, 401, 161);
-    //TODO Farbe des Panels hinzufügen
+    //TODO Farbe des Panels hinzufÃ¼gen
     cp.add(pnl_Note_hinzufuegen);
     this.aktualisiereDaten(datei);
     
@@ -101,7 +101,7 @@ public class NotenverwaltungGUI extends JFrame {
   public void aktualisiereDaten(File datei) {
     //Wenn die Datei nicht die Standarddatei ist
     if (!datei.getName().equals("default.xml")){
-      //AML auslesen und alle alten Elemente löschen
+      //AML auslesen und alle alten Elemente lÃ¶schen
       nv = new Notenverwaltung(datei);
       pnl_Faecher.removeAll();
       pnl_Fach_hinzufuegen.removeAll();
@@ -109,18 +109,18 @@ public class NotenverwaltungGUI extends JFrame {
       pnl_Note_hinzufuegen.removeAll();
     }
     
-    //Elemente der graphischen Benutzeroberfläche einstellen
-    //Elemente der Fächerliste
+    //Elemente der graphischen BenutzeroberflÃ¤che einstellen
+    //Elemente der FÃ¤cherliste
     jLabel1.setBounds(24, 8, 52, 16);
     jLabel1.setForeground(FARBEFACH);
-    jLabel1.setText("Fächer");
+    jLabel1.setText("FÃ¤cher");
     pnl_Faecher.add(jLabel1);
     jLabel10.setBounds(80, 8, 102, 16);
     jLabel10.setHorizontalAlignment(SwingConstants.RIGHT);
     jLabel10.setText("(Wunsch-) Note");
     jLabel10.setForeground(FARBEFACH);
     pnl_Faecher.add(jLabel10);
-    //Checkboxen mit Fächern
+    //Checkboxen mit FÃ¤chern
     for (int i = 0; i < nv.getAnzahlFaecher(); i++) {
       // Checkbox mit Fachnamen
       faecher.add(new JRadioButton());
@@ -155,10 +155,10 @@ public class NotenverwaltungGUI extends JFrame {
       pnl_Faecher.add(wunschnoten.get(i));
     }
     
-    //Elemente des Panel Fach hinzufügen
+    //Elemente des Panel Fach hinzufÃ¼gen
     jLabel2.setBounds(40, 8, 106, 16);
     jLabel2.setForeground(FARBEFACHDAZU);
-    jLabel2.setText("Fach hinzufügen");
+    jLabel2.setText("Fach hinzufÃ¼gen");
     pnl_Fach_hinzufuegen.add(jLabel2);
     jLabel3.setBounds(8, 32, 74, 16);
     jLabel3.setForeground(FARBEFACHDAZU);
@@ -175,7 +175,7 @@ public class NotenverwaltungGUI extends JFrame {
     nfd_wunschnote.setText("");
     pnl_Fach_hinzufuegen.add(nfd_wunschnote);
     btn_Fach_hinzufuegen.setBounds(8, 128, 169, 25);
-    btn_Fach_hinzufuegen.setText("Fach hinzufügen");
+    btn_Fach_hinzufuegen.setText("Fach hinzufÃ¼gen");
     btn_Fach_hinzufuegen.setForeground(FARBEFACHDAZU);
     btn_Fach_hinzufuegen.setMargin(new Insets(2, 2, 2, 2));
     btn_Fach_hinzufuegen.addActionListener(new ActionListener() {
@@ -185,10 +185,10 @@ public class NotenverwaltungGUI extends JFrame {
     });
     pnl_Fach_hinzufuegen.add(btn_Fach_hinzufuegen);
     
-    //Elemente des Panel Note hinzufügen
+    //Elemente des Panel Note hinzufÃ¼gen
     jLabel5.setBounds(8, 8, 105, 16);
     jLabel5.setForeground(FARBENOTEDAZU);
-    jLabel5.setText("Note hinzufügen");
+    jLabel5.setText("Note hinzufÃ¼gen");
     pnl_Note_hinzufuegen.add(jLabel5);
     jLabel6.setBounds(8, 40, 86, 16);
     jLabel6.setForeground(FARBENOTEDAZU);
@@ -220,6 +220,9 @@ public class NotenverwaltungGUI extends JFrame {
     jLabel9.setText("Fach");
     pnl_Note_hinzufuegen.add(jLabel9);
     cbx_Fachname.setBounds(112, 128, 145, 24);
+
+    cbx_Fachname.removeAllItems();                             // !! <Tom> ErgÃ¤nzung: leerung der cbx vor erneuter ErgÃ¤nzung
+    
     for (int i = 0; i < nv.getAnzahlFaecher(); i++) {
       cbx_Fachname.addItem(nv.getFachname(i));
     }
@@ -243,7 +246,7 @@ public class NotenverwaltungGUI extends JFrame {
 
     btn_File_waehlen.setBounds(304, 0, 91, 25);
     btn_File_waehlen.setForeground(FARBENOTE);
-    btn_File_waehlen.setText("Datei öffnen");
+    btn_File_waehlen.setText("Datei Ã¶ffnen");
     btn_File_waehlen.setMargin(new Insets(2, 2, 2, 2));
     btn_File_waehlen.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
@@ -264,7 +267,7 @@ public class NotenverwaltungGUI extends JFrame {
 
   // Anfang Methoden
   public String jfcoOpenFilename() {
-    jfco.setDialogTitle("Öffne Datei");
+    jfco.setDialogTitle("Ã–ffne Datei");
     if (jfco.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
       return jfco.getSelectedFile().getPath();
     } else {
@@ -283,7 +286,7 @@ public class NotenverwaltungGUI extends JFrame {
   }
 
   private void cbx_Fach_ausgewaehlt_ActionPerformed(ActionEvent evt) {
-    // Auslösende Checkbox identifizieren
+    // AuslÃ¶sende Checkbox identifizieren
     String fachname = evt.getActionCommand();
     // Noten zum Fach aus der Notenliste holen
     java.util.List<Note> noten = nv.getNoten(fachname);
@@ -347,15 +350,15 @@ public class NotenverwaltungGUI extends JFrame {
     // Ansicht aktualisieren
     pnl_Faecher.repaint(pnl_Faecher.getBounds());
     setVisible(true);
-    // Neues Fach der ComboBox bei Note hinzufügen bekannt machen
+    // Neues Fach der ComboBox bei Note hinzufÃ¼gen bekannt machen
     cbx_Fachname.addItem(this.tfd_fachname.getText());
-    // Eingabe löschen
+    // Eingabe lÃ¶schen
     this.tfd_fachname.setText("");
     this.nfd_wunschnote.clear();
   }
 
   public void btn_Note_hinzufuegen_ActionPerformed(ActionEvent evt) {
-    // Werte der Felder auslesen und die Eingabefelder zurücksetzen
+    // Werte der Felder auslesen und die Eingabefelder zurÃ¼cksetzen
     int notenpunkte = this.nfd_notenpunkte.getInt();
     this.nfd_notenpunkte.clear();
     String leistung = this.tfd_leistung.getText();
@@ -368,7 +371,7 @@ public class NotenverwaltungGUI extends JFrame {
     this.cbx_klausur.setSelected(false);
     String fachname = (String) this.cbx_Fachname.getSelectedItem();
     this.cbx_Fachname.setSelectedIndex(0);
-    // Note in der Notenverwaltung hinzufügen
+    // Note in der Notenverwaltung hinzufÃ¼gen
     // Unterscheidung welcher Konstruktor verwendet wird
     Note neue_Note;
     if (klausur)
