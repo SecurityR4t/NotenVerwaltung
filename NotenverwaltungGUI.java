@@ -359,7 +359,9 @@ public class NotenverwaltungGUI extends JFrame {
 
   public void btn_Note_hinzufuegen_ActionPerformed(ActionEvent evt) {
     // Werte der Felder auslesen und die Eingabefelder zurücksetzen
-    int notenpunkte = this.nfd_notenpunkte.getInt();
+    int notenpunkte = 0;
+    if (nfd_notenpunkte.isNumeric())  // !! <Tom>  Fehler behoben, abfrage isNumeric fehlte und führte zu Systemfehlerausgaben
+      notenpunkte = this.nfd_notenpunkte.getInt();
     this.nfd_notenpunkte.clear();
     String leistung = this.tfd_leistung.getText();
     this.tfd_leistung.setText("");
