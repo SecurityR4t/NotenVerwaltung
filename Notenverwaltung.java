@@ -13,7 +13,7 @@ import org.w3c.dom.*;
 
 /**
  * 
- * Verwaltet die Noten und stellt Listen für die GUI zusammen
+ * Verwaltet die Noten und stellt Listen fÃ¼r die GUI zusammen
  * 
  * @version 1.0 vom 15.08.2011
  * @author Tenbusch
@@ -24,7 +24,7 @@ public class Notenverwaltung {
   private List<Fach> faecher = new Vector<Fach>();
   private File datei;
 
-  // Einlesen der Daten - dem Konstruktor wird die Datei übergeben
+  // Einlesen der Daten - dem Konstruktor wird die Datei Ã¼bergeben
   public Notenverwaltung(File datei) {
     this.datei = datei;
     // Datei existiert noch nicht
@@ -43,27 +43,27 @@ public class Notenverwaltung {
   
   //Methoden
   
-  //gibt den Fachnamen nach der Nummer in der Liste zurück
+  //gibt den Fachnamen nach der Nummer in der Liste zurÃ¼ck
   public String getFachname(int index){
     return faecher.get(index).getFachname();
   }
   
-  //gibt die Wunschnote nach der Nummer in der Liste zurück
+  //gibt die Wunschnote nach der Nummer in der Liste zurÃ¼ck
   public int getWunschnote(int index){
     return faecher.get(index).getNotenziel();
   }
   
-  //gibt den aktuellen Notenstand nach der Nummer in der Liste zurück
+  //gibt den aktuellen Notenstand nach der Nummer in der Liste zurÃ¼ck
   public String getNotenstand(int index){
     return faecher.get(index).getZeugnisnote();
   }
   
-  //gibt den Fachnamen nach der Nummer in der Liste zurück
+  //gibt den Fachnamen nach der Nummer in der Liste zurÃ¼ck
   public int getAnzahlFaecher() {
     return faecher.size();
   }
   
-  //gibt die Namen der Fächer als Liste zurück
+  //gibt die Namen der FÃ¤cher als Liste zurÃ¼ck
   public String[] getFaecherListe(){
     String[] faechernamen = new String[faecher.size()];
     for(int i = 0; i < faecher.size(); i++){
@@ -80,13 +80,13 @@ public class Notenverwaltung {
     return null;
   }
   
-  //neue Note hinzufügen
+  //neues Fach hinzufÃ¼gen
   public void neuesFach(Fach fach) {
     faecher.add(fach);
     speichern();
   }
   
-  //neues Fach hinzufügen
+  //neue Note hinzufÃ¼gen
   public void neueNote(Note note, String fachname) {
     for (Fach fach : faecher) {
       if (fach.getFachname().equals(fachname)) {
@@ -97,30 +97,30 @@ public class Notenverwaltung {
     }
   }
   
-  //läd die gespeicherten Noten- und Fachdaten aus der XML-Datei
+  //lÃ¤d die gespeicherten Noten- und Fachdaten aus der XML-Datei
   private void laden() {
     try{
       //Auslesen vorbereiten
       DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
       DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-      //Datei auswählen
+      //Datei auswÃ¤hlen
       Document doc = dBuilder.parse(this.datei);
       doc.getDocumentElement().normalize();
       
       //Auslesen
       NodeList nList = doc.getChildNodes();
-      nList = nList.item(0).getChildNodes();//Root-Knoten zu Fächern
+      nList = nList.item(0).getChildNodes();//Root-Knoten zu FÃ¤chern
       
-      //Für alle Fächer
+      //FÃ¼r alle FÃ¤cher
       for(int i = 0; i < nList.getLength(); i++){
         Node n = nList.item(i);
         Fach augelesenesFach = new Fach(n.getNodeName(), 
                          Integer.parseInt(n.getAttributes().item(0).getNodeValue()));
         
-        //Für alle Noten
+        //FÃ¼r alle Noten
         for(int j = 0; j < nList.item(i).getChildNodes().getLength(); j++){
-          NodeList note = nList.item(i).getChildNodes();//Fächer zu Noten
-          //Für alle Attribute der Note
+          NodeList note = nList.item(i).getChildNodes();//FÃ¤cher zu Noten
+          //FÃ¼r alle Attribute der Note
           NodeList tmp = note.item(j).getChildNodes();//Noten zu Attributen
           
           //Notenattribute auslesen
@@ -130,7 +130,7 @@ public class Notenverwaltung {
           boolean kl = Boolean.parseBoolean(tmp.item(3).getTextContent());
           
           Note ausgeleseneNote;
-          //Konstruktor auswählen
+          //Konstruktor auswÃ¤hlen
           if(kl) ausgeleseneNote = new Note(np, el, kl);
           else ausgeleseneNote = new Note(np, el, ge); 
           
@@ -151,18 +151,18 @@ public class Notenverwaltung {
       DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
       Document doc = docBuilder.newDocument();
       
-      //XML-Dokument mit Daten füllen
+      //XML-Dokument mit Daten fÃ¼llen
       Element schueler = doc.createElement(datei.getName());
       doc.appendChild(schueler);
       
-      //für alle Fächer
+      //fÃ¼r alle FÃ¤cher
       for (Fach fach : faecher) {
         // Fachelemente
         Element f = doc.createElement(fach.getFachname());
         f.setAttribute("notenwunsch", fach.getNotenziel() + "");
         schueler.appendChild(f);
         
-        //für alle Noten
+        //fÃ¼r alle Noten
         for (int i = 0; i < fach.getAnzahlNoten(); i++) {
           Element note = doc.createElement("Note");
           f.appendChild(note);
