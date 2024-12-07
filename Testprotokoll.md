@@ -5,23 +5,23 @@ In dem Programm kann man Notenspeicher mit dem jeweiligen Fachnamen erstellen. A
 Die Struktur ist erkennbar und logisch allerdings könnte sie ersichtlicher sein wenn die einzelnen Abschnitte umrahmt wären. Ansonsten ist das Pogramm bis auf wenige Fälle ausschließlich in grau/schwarz/weiß gehalten was wenig einladend wirkt.
 
 ## 3.	Fehler im Programm inklusive kurze Beschreibung:
-[ ] - Beim hinzufügen einer Note werden bei der Auswahlliste "Fach" immer wieder alle vorhandenen zusätzlich Fächer hinzugefügt = 
+- [ ] Beim hinzufügen einer Note werden bei der Auswahlliste "Fach" immer wieder alle vorhandenen zusätzlich Fächer hinzugefügt = 
   lange Liste
 
-[ ] - Der erste Noteneintrag wird nicht als Note berechnet, erst beim zweiten Eintrag wird eine Note berechnet
+- [ ] Der erste Noteneintrag wird nicht als Note berechnet, erst beim zweiten Eintrag wird eine Note berechnet
 
-[ ] - Wenn z.B. deutsch cbx ausgewählt und Mathenote hinzugefüt springt das Pogramm bei NP/Gewichtung/Leistung schon auf Mathe, 
+- [ ] Wenn z.B. deutsch cbx ausgewählt und Mathenote hinzugefüt springt das Pogramm bei NP/Gewichtung/Leistung schon auf Mathe, 
   Deutsch cbx bleibt ausgewählt
 
-[ ] - Bei Fach wo keine Note gefunden wird bleibt NP/Gewichtung/Leistung auf vorher ausgewähltem Fach
+- [ ] Bei Fach wo keine Note gefunden wird bleibt NP/Gewichtung/Leistung auf vorher ausgewähltem Fach
 
-[ ] - 0 gewichtete Noten werden in die Gesamtnote einbezogen
+- [ ] 0 gewichtete Noten werden in die Gesamtnote einbezogen
 
-[ ] - Notenpunkte können über 15 angegeben werden
+- [ ] Notenpunkte können über 15 angegeben werden
 
-[ ] - Gewichtung kann über 100% eingegeben werden
+- [ ] Gewichtung kann über 100% eingegeben werden
 
-[ ] - Systemeingabeaufforderung gibt viele Fehlermeldungen
+- [ ] Systemeingabeaufforderung gibt viele Fehlermeldungen
 
 ## 4.	Bedienbarkeit (leicht, intuitiv, kompliziert, nur mit Anleitung)
 Auf den ersten Blick kompliziert und unübersichtlich aber an sich logisch, nachvollziehbar und leicht erlernbar. 
