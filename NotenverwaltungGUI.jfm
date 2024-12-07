@@ -1,6 +1,6 @@
 object NotenverwaltungGUI: TFGUIForm
-  Left = 3167
-  Top = 588
+  Left = 2825
+  Top = 143
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'NotenverwaltungGUI'
   ClientHeight = 462
@@ -22,7 +22,7 @@ object NotenverwaltungGUI: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = False
+  Modified = True
   Resizable = False
   Undecorated = False
   Background = clBtnFace
@@ -41,10 +41,10 @@ object NotenverwaltungGUI: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
-    Border.BorderType = NoBorder
+    Border.BorderType = LineBorder
     Border.LineColor = clBlack
-    Border.LineThickness = 0
-    Border.LineRounded = False
+    Border.LineThickness = 2
+    Border.LineRounded = True
     Border.EtchHighlightColor = clBlack
     Border.EtchShadowColor = clBlack
     Border.Etchtype = 0
@@ -298,9 +298,9 @@ object NotenverwaltungGUI: TFGUIForm
   end
   object pnl_Noten: TJPanel
     Tag = 12
-    Left = 184
+    Left = 192
     Top = 0
-    Width = 401
+    Width = 393
     Height = 305
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -309,9 +309,9 @@ object NotenverwaltungGUI: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
-    Border.BorderType = NoBorder
+    Border.BorderType = LineBorder
     Border.LineColor = clBlack
-    Border.LineThickness = 0
+    Border.LineThickness = 2
     Border.LineRounded = False
     Border.EtchHighlightColor = clBlack
     Border.EtchShadowColor = clBlack
@@ -403,10 +403,10 @@ object NotenverwaltungGUI: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
-    Border.BorderType = NoBorder
+    Border.BorderType = LineBorder
     Border.LineColor = clBlack
-    Border.LineThickness = 0
-    Border.LineRounded = False
+    Border.LineThickness = 2
+    Border.LineRounded = True
     Border.EtchHighlightColor = clBlack
     Border.EtchShadowColor = clBlack
     Border.Etchtype = 0
@@ -568,7 +568,7 @@ object NotenverwaltungGUI: TFGUIForm
     Tag = 12
     Left = 0
     Top = 0
-    Width = 185
+    Width = 193
     Height = 305
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -577,9 +577,9 @@ object NotenverwaltungGUI: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
-    Border.BorderType = NoBorder
+    Border.BorderType = LineBorder
     Border.LineColor = clBlack
-    Border.LineThickness = 0
+    Border.LineThickness = 2
     Border.LineRounded = False
     Border.EtchHighlightColor = clBlack
     Border.EtchShadowColor = clBlack

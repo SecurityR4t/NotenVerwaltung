@@ -78,13 +78,13 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     // Anfang Komponenten
 
     // Panel hinzufügen
-    pnl_Faecher.setBounds(0, 0, 185, 305);
+    pnl_Faecher.setBounds(0, 0, 193, 305);
     //TODO Farbe des Panels hinzufügen
     cp.add(pnl_Faecher);
     pnl_Fach_hinzufuegen.setBounds(0, 304, 185, 161);
     //TODO Farbe des Panels hinzufügen
     cp.add(pnl_Fach_hinzufuegen);
-    pnl_Noten.setBounds(184, 0, 401, 305);
+    pnl_Noten.setBounds(192, 0, 393, 305);
     //TODO Farbe des Panels hinzufügen
     cp.add(pnl_Noten);
     pnl_Note_hinzufuegen.setBounds(184, 304, 401, 161);
@@ -399,8 +399,26 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
 
   public void btn_Fach_hinzufuegen_ActionPerformed(ActionEvent evt) {
     int i = nv.getAnzahlFaecher();
-    // Fach in der Notenverwaltung eintragen
-    nv.neuesFach(new Fach(this.tfd_fachname.getText(), this.nfd_wunschnote.getInt()));
+    
+    // <ahmet>
+    //// 
+    String[] vorhandeneFaecher = nv.getFaecherListe();    
+    String neuesFach = tfd_fachname.getText().toLowerCase();
+    
+
+    if (nfd_wunschnote.getInt() > 100) {
+      return;
+    }
+    
+    //Kontrolle ob das fach vorher schon erstellt wurde.
+    for (int i = 0; i < vorhandeneFaecher.length; i++) { 
+      if(vorhandeneFaecher[i].equalsIgnoreCase(neuesFach)){
+        return; //wenn es schon erstellt wurde nicht hinzufügen und funktion beenden.
+      }
+    } 
+    ////
+    
+    nv.neuesFach(new Fach(this.tfd_fachname.getText(), this.nfd_wunschnote.getInt()));    // Fach in der Notenverwaltung eintragen
     // Neue Fachauswahl erstellen
     faecher.add(new JRadioButton());
     faecher.get(i).setBounds(8, 25 * (i + 1), 113, 20);
@@ -456,7 +474,8 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
 //    boolean klausur = false;
 //    String fachname = "";
 //    
-    // !! <Tom> Fehler behoben, abfrage isNumeric hat gefehlt  // <ahmet> note über 15 muss kontrolliert werden. verzweigungen zusammengefasst / verkürzt.
+    // !! <Tom> Fehler behoben, abfrage isNumeric hat gefehlt 
+    // <ahmet> note über 15 muss kontrolliert werden. verzweigungen zusammengefasst / verkürzt.
     //<ahmet> NOTE: kontrolle von werten funktioniert noch nicht! (<= 15)
     if (nfd_notenpunkte.isNumeric() && nfd_notenpunkte.getInt() <= 15 && nfd_gewichtung.isNumeric() && nfd_gewichtung.getInt() <= 100){
 
