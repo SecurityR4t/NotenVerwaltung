@@ -61,8 +61,8 @@ public class NotenverwaltungGUI extends JFrame {
     // Frame-Initialisierung
     super(title);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 592; 
-    int frameHeight = 493;
+    int frameWidth = 588; 
+    int frameHeight = 489;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -93,7 +93,7 @@ public class NotenverwaltungGUI extends JFrame {
     // Ende Komponenten
     setResizable(false);
     setVisible(true);
-                                                              // !! <Tom> code umgeschoben da er unendlich action, listeners erstellt
+                                                              // !! <Tom> code umgeschoben da er unendlich action listeners erstellt hat
     
     btn_Note_hinzufuegen.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
@@ -164,6 +164,7 @@ public class NotenverwaltungGUI extends JFrame {
       wunschnoten.get(i).setBounds(125, 25 * (i + 1), 50, 20);
       wunschnoten.get(i).setHorizontalAlignment(SwingConstants.RIGHT);
       int notenwunsch = nv.getWunschnote(i);
+      
       if(nv.getNotenstand(i).equals("o.B.")){
         wunschnoten.get(i).setText("(" + notenwunsch + ") o.B.");
       }
@@ -171,14 +172,15 @@ public class NotenverwaltungGUI extends JFrame {
         int notenstand  = Integer.parseInt(nv.getNotenstand(i));
         if (notenstand == notenwunsch)
           wunschnoten.get(i).setForeground(Color.BLUE);
-          else if (notenwunsch < notenstand)
+        else if (notenwunsch < notenstand)
           wunschnoten.get(i).setForeground(Color.GREEN);
-        else
-          wunschnoten.get(i).setForeground(Color.RED);
+        else                        
+          wunschnoten.get(i).setForeground(Color.RED);    
         wunschnoten.get(i).setText("(" + notenwunsch + ") " + notenstand);
       }
       pnl_Faecher.add(wunschnoten.get(i));
     }
+    pnl_Faecher.updateUI();                  // !! <Tom> UpdateUI damit die neue Gesamtnote dargestellt wird, ohne dieses = Fehler
     
     //Elemente des Panel Fach hinzufügen
     jLabel2.setBounds(40, 8, 99, 20);
@@ -392,7 +394,6 @@ public class NotenverwaltungGUI extends JFrame {
   public void btn_Note_hinzufuegen_ActionPerformed(ActionEvent evt) {
     // Werte der Felder auslesen und die Eingabefelder zurücksetzen
     int notenpunkte = 0;
-    System.out.println("Test");
     if (nfd_notenpunkte.isNumeric())   // !! <Tom> Fehler behoben, abfrage isNumeric hat gefehlt
       notenpunkte = this.nfd_notenpunkte.getInt();
     this.nfd_notenpunkte.clear();
