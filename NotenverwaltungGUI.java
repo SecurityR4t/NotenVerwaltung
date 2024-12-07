@@ -389,12 +389,13 @@ public class NotenverwaltungGUI extends JFrame {
     // Eingabe löschen
     this.tfd_fachname.setText("");
     this.nfd_wunschnote.clear();
+    this.aktualisiereDaten(datei);        // !! <Tom> aktualisiere Datei damit man nicht die Noten des Letzten Faches sieht nach erstellung
   }
 
   public void btn_Note_hinzufuegen_ActionPerformed(ActionEvent evt) {
     // Werte der Felder auslesen und die Eingabefelder zurücksetzen
     int notenpunkte = 0;
-    if (nfd_notenpunkte.isNumeric())   // !! <Tom> Fehler behoben, abfrage isNumeric hat gefehlt
+    if (nfd_notenpunkte.isNumeric())                     // !! <Tom> Fehler behoben, abfrage isNumeric hat gefehlt
       notenpunkte = this.nfd_notenpunkte.getInt();
     this.nfd_notenpunkte.clear();
     String leistung = this.tfd_leistung.getText();
