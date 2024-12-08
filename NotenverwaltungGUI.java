@@ -63,8 +63,8 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     // Frame-Initialisierung
     super(title);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 588; 
-    int frameHeight = 489;
+    int frameWidth = 580; 
+    int frameHeight = 481;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -400,19 +400,19 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
   public void btn_Fach_hinzufuegen_ActionPerformed(ActionEvent evt) {
     int i = nv.getAnzahlFaecher();
     
-    // <ahmet>
+    // <ahmet> Ergänzung das Fächer keine Wunschnote über ( <Tom>15 ) haben darf und keine doppelten Namen
     //// 
     String[] vorhandeneFaecher = nv.getFaecherListe();    
     String neuesFach = tfd_fachname.getText().toLowerCase();
     
 
-    if (nfd_wunschnote.getInt() > 100) {
+    if (nfd_wunschnote.getInt() > 15) {
       return;
     }
     
     //Kontrolle ob das fach vorher schon erstellt wurde.
-    for (int i = 0; i < vorhandeneFaecher.length; i++) { 
-      if(vorhandeneFaecher[i].equalsIgnoreCase(neuesFach)){
+    for (int it = 0; it < vorhandeneFaecher.length; it++) { 
+      if(vorhandeneFaecher[it].equalsIgnoreCase(neuesFach)){
         return; //wenn es schon erstellt wurde nicht hinzufügen und funktion beenden.
       }
     } 
@@ -434,56 +434,25 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     this.tfd_fachname.setText("");
     this.nfd_wunschnote.clear();
     this.aktualisiereDaten(datei);        // !! <Tom> aktualisiere Datei damit man nicht die Noten des Letzten Faches sieht nach erstellung
-  }
-
-//  public void btn_Note_hinzufuegen_ActionPerformed(ActionEvent evt) {
-//    // Werte der Felder auslesen und die Eingabefelder zurücksetzen
-//    int notenpunkte = 0;
-//    if (nfd_notenpunkte.isNumeric() && nfd_notenpunkte <= 15)                      // !! <Tom> Fehler behoben, abfrage isNumeric hat gefehlt
-//      notenpunkte = this.nfd_notenpunkte.getInt();
-//    this.nfd_notenpunkte.clear();
-//    String leistung = this.tfd_leistung.getText();
-//    this.tfd_leistung.setText("");
-//    int gewichtung = 0;
-//    if (nfd_gewichtung.isNumeric())
-//      gewichtung = this.nfd_gewichtung.getInt();
-//    this.nfd_gewichtung.setInt(0);
-//    boolean klausur = this.cbx_klausur.isSelected();
-//    this.cbx_klausur.setSelected(false);
-//    String fachname = (String) this.ddMenuFach.getSelectedItem();
-//    this.ddMenuFach.setSelectedIndex(0);
-//    // Note in der Notenverwaltung hinzufügen
-//    // Unterscheidung welcher Konstruktor verwendet wird
-//    Note neue_Note;
-//    if (klausur)
-//      neue_Note = new Note(notenpunkte, leistung, klausur);
-//    else
-//      neue_Note = new Note(notenpunkte, leistung, gewichtung);
-//    nv.neueNote(neue_Note, fachname);
-//    // Notenliste aktualisieren
-//    cbx_Fach_ausgewaehlt_ActionPerformed(new ActionEvent(this, 56465,
-//        fachname));
-//    this.aktualisiereDaten(datei);
-//  }
-  
+  } 
 
   public void btn_Note_hinzufuegen_ActionPerformed(ActionEvent evt) {  //<ahmet> ganze funktion neu geschrieben damit es leserlicher ist.
-//    int notenpunkte = 0; 
-//    String leistung = "";
-//    int gewichtung = 0;
-//    boolean klausur = false;
-//    String fachname = "";
-//    
+    int notenpunkte = 0; 
+    String leistung = "";
+    int gewichtung = 0;
+    boolean klausur = false;
+    String fachname = "";
+    
     // !! <Tom> Fehler behoben, abfrage isNumeric hat gefehlt 
     // <ahmet> note über 15 muss kontrolliert werden. verzweigungen zusammengefasst / verkürzt.
-    //<ahmet> NOTE: kontrolle von werten funktioniert noch nicht! (<= 15)
+    // !! <Tom> Alle Fehler behoben und unnötiges entfernt, funktioniert alles
     if (nfd_notenpunkte.isNumeric() && nfd_notenpunkte.getInt() <= 15 && nfd_gewichtung.isNumeric() && nfd_gewichtung.getInt() <= 100){
-
-      int notenpunkte = this.nfd_notenpunkte.getInt();
-      int gewichtung = this.nfd_gewichtung.getInt();
-      String leistung = this.tfd_leistung.getText();
-      String fachname = (String) this.ddMenuFach.getSelectedItem();
-      boolean klausur = this.cbx_klausur.isSelected();
+  
+      notenpunkte = this.nfd_notenpunkte.getInt();
+      gewichtung = this.nfd_gewichtung.getInt();
+      leistung = this.tfd_leistung.getText();
+      fachname = (String) this.ddMenuFach.getSelectedItem();
+      klausur = this.cbx_klausur.isSelected();
       
       
       
@@ -491,7 +460,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       Note neue_Note;  //Variable für Note deklarieren
       if (klausur)
         neue_Note = new Note(notenpunkte, leistung, klausur);
-       else
+      else
         neue_Note = new Note(notenpunkte, leistung, gewichtung);
         
        nv.neueNote(neue_Note, fachname);
@@ -499,9 +468,6 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       cbx_Fach_ausgewaehlt_ActionPerformed(new ActionEvent(this, 56465, fachname));
       this.aktualisiereDaten(datei);
     }
-    
-    
-
     
     //<ahmet> alles am ende löschen (clear)
     this.nfd_notenpunkte.clear();
