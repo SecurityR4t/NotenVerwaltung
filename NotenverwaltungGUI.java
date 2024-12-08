@@ -4,6 +4,14 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.io.File;
 import java.util.*;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import java.util.Vector;
+import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 
 /**
  * 
@@ -23,6 +31,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
   private final Color FARBENOTEDAZU = Color.BLACK;
   //(oder = new Color(R, G, B); und RGB durch Zahlen bis 255 ersetzen
   private Notenverwaltung nv;
+  
   private File datei;
   private JPanel pnl_Faecher = new JPanel(null);
     private JLabel lblFaecher = new JLabel();
@@ -54,6 +63,10 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     private String[] cbx_FachnameData = {};
     private JButton btn_Note_hinzufuegen = new JButton();
     private JComboBox ddMenuFach = new JComboBox(cbx_FachnameData); //<ahmet> dd für dropdown Menu
+    private java.util.List<JLabel> notenNummer = new Vector<JLabel>();
+  private JButton btn_Note_Loeschen = new JButton();
+    private JLabel lblNoteLoeschen = new JLabel();
+    private JNumberField nfd_LoescheNummer = new JNumberField();
   // end attributes
     private JFileChooser jfco = new JFileChooser();
 
@@ -112,6 +125,12 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     btn_Fach_hinzufuegen.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
         btn_Fach_hinzufuegen_ActionPerformed(evt);
+      }
+    });
+    
+    btn_Note_Loeschen.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {
+        btn_Note_Loeschen_ActionPerformed(evt);
       }
     });
     
@@ -222,7 +241,6 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     btn_Fach_hinzufuegen.setText("Fach hinzufügen");
     btn_Fach_hinzufuegen.setForeground(FARBEFACHDAZU);
     btn_Fach_hinzufuegen.setMargin(new Insets(2, 2, 2, 2));
-    
     btn_Fach_hinzufuegen.setFont(new Font("Dialog", Font.PLAIN, 13));
     btn_Fach_hinzufuegen.setFont(new Font("Dialog", Font.PLAIN, 13));
     pnl_Fach_hinzufuegen.add(btn_Fach_hinzufuegen);
@@ -315,8 +333,20 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     btn_Datei_waehlen.setFont(new Font("Dialog", Font.PLAIN, 13));
     btn_Datei_waehlen.setFont(new Font("Dialog", Font.PLAIN, 13));
     pnl_Noten.add(btn_Datei_waehlen);
-
     
+    btn_Note_Loeschen.setBounds(280, 280, 91, 25);
+    btn_Note_Loeschen.setText("Note Löschen");
+    btn_Note_Loeschen.setMargin(new Insets(2, 2, 2, 2));
+    
+    btn_Note_Loeschen.setFont(new Font("Dialog", Font.PLAIN, 13));
+    btn_Note_Loeschen.setFont(new Font("Dialog", Font.PLAIN, 13));
+    pnl_Noten.add(btn_Note_Loeschen);
+    
+    nfd_LoescheNummer.setBounds(280, 254, 91, 25);
+    nfd_LoescheNummer.setFont(new Font("Dialog", Font.PLAIN, 13));
+    nfd_LoescheNummer.setFont(new Font("Dialog", Font.PLAIN, 13));
+    pnl_Noten.add(nfd_LoescheNummer);
+
     if (!datei.getName().equals("default.xml")){
       pnl_Faecher.repaint();
       pnl_Fach_hinzufuegen.repaint();
@@ -345,6 +375,12 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     }
     return null;
   }
+
+  private void btn_Note_Loeschen_ActionPerformed(ActionEvent evt) {
+    System.out.println("TEst");
+  }
+
+  
 
   private void cbx_Fach_ausgewaehlt_ActionPerformed(ActionEvent evt) {
     // Auslösende Checkbox identifizieren
@@ -390,6 +426,13 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       notenliste.get(i).setText(noten.get(j).getErbrachteLeistung());
       pnl_Noten.add(notenliste.get(i));
       notenliste.get(i++).setVisible(true);
+      // cbx
+      notenNummer.add(new JLabel());
+      notenNummer.get(j).setBounds(0, 25 + j * 17, 113, 16);
+      notenNummer.get(j).setFont(new Font("MS Sans Serif", Font.PLAIN, 13));
+      notenNummer.get(j).setText(j + "");
+      pnl_Noten.add(notenNummer.get(j));
+      
     }
     pnl_Noten.add(btn_Datei_waehlen);
     pnl_Noten.revalidate();
@@ -437,6 +480,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
   } 
 
   public void btn_Note_hinzufuegen_ActionPerformed(ActionEvent evt) {  //<ahmet> ganze funktion neu geschrieben damit es leserlicher ist.
+    
     int notenpunkte = 0; 
     String leistung = "";
     int gewichtung = 0;
