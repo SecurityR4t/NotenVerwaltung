@@ -94,6 +94,18 @@ public class Notenverwaltung {
         speichern();
         return;
       }
+    }  
+  }
+  
+  public void noteLoeschen(int stelle) {
+    int i = 0;
+    for (Fach fach : faecher) {
+      i++;
+      System.out.println(stelle);
+      if (i == stelle) {
+        fach.loescheNote(stelle);
+        return;
+      }
     }
   }
   
