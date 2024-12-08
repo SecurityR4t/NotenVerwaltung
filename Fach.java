@@ -43,24 +43,25 @@ public class Fach {
   }
 
   // Methoden
-  // fügt eine neue Note ein
+  // fÃ¼gt eine neue Note ein
   public void neueNote(Note note) {
     noten.add(note);
   }
 
-  // ändert die Note an der angegebenen Stelle in der Liste (fängt mit 0 an!)
+  // Ã¤ndert die Note an der angegebenen Stelle in der Liste (fÃ¤ngt mit 0 an!)
   public void aenderNote(Note note, int stelle) {
     // Fehlerabfrage, wenn der Benutzer mist macht
-    if (stelle <= this.noten.size() && stelle >= 0)
+    if (stelle <= this.noten.size())
       noten.remove(stelle);
       noten.add(note);
   }
 
-  // löscht eine Note aus der Liste und lässt die Leerstelle in der Liste
+  // lÃ¶scht eine Note aus der Liste und lÃ¤sst die Leerstelle in der Liste
   // verschwinden
   public void loescheNote(int stelle) {
     // Fehlerabfrage, wenn der Benutzer mist macht
-    if (stelle <= this.noten.size() && stelle >= 0) {
+    System.out.println(this.noten.size());
+    if (stelle <= this.noten.size()) {
       noten.remove(stelle);
     }
   }
@@ -71,8 +72,8 @@ public class Fach {
     int anzahlKlausuren = 0, anzahlBesondereNoten = 0;
     int gewichtung = 100;
 
-    // Abfangen, fall für eine leere Liste die Note berechnet wird
-    // das Schlüsselwort return beendet die ganze Methode
+    // Abfangen, fall fÃ¼r eine leere Liste die Note berechnet wird
+    // das SchlÃ¼sselwort return beendet die ganze Methode
     if (noten.size() == 0)
       return "o.B."; // also "ohne Bewertung"
 
@@ -80,7 +81,7 @@ public class Fach {
     // Notenliste durchgehen und nach Klausuren suchen
     for (int i = 0; i < this.noten.size(); i++) {
       if (noten.get(i).isKlausur()) {
-        anzahlKlausuren++; // Klausurzähler +1
+        anzahlKlausuren++; // KlausurzÃ¤hler +1
         schriftlich += noten.get(i).getNotenpunkte();// Klausurnote
         // aufaddieren
       }
@@ -88,7 +89,7 @@ public class Fach {
     // Durchschnitt der Klausuren berechnen
     schriftlich = schriftlich / anzahlKlausuren;
 
-    // Berechnung mündlicher Teil
+    // Berechnung mÃ¼ndlicher Teil
     // Notenliste durchgehen und nach besonder Benotung suchen
     for (int i = 0; i < this.noten.size(); i++) {
       if (noten.get(i).getGewichtung() != 0 && !noten.get(i).isKlausur()) {
@@ -109,10 +110,10 @@ public class Fach {
         // Gewichtung
       }
     }
-    // Durchschnitt der mündlichen Note ausrechnen
+    // Durchschnitt der mÃ¼ndlichen Note ausrechnen
     muendlich /= 100.0F;
 
-    // Klausuren können unterschiedlich in die Endnote einfließen
+    // Klausuren kÃ¶nnen unterschiedlich in die Endnote einflieÃŸen
     // Berechnung des mathematischen Durchschnitts
     if (anzahlKlausuren == 0) {
       durchschnitt = muendlich;
@@ -129,7 +130,7 @@ public class Fach {
     return noten;
   }
   
-  // gibt die Liste als Zeichenkette zurück
+  // gibt die Liste als Zeichenkette zurÃ¼ck
   public String toString() {
     // Fachname
     String notenliste = this.fachname + ": ";
