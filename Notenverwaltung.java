@@ -97,7 +97,8 @@ public class Notenverwaltung {
     }  
   }
   
-   public void noteLoeschen(int stelle, String fachname) {
+  // Note löschen
+  public void noteLoeschen(int stelle, String fachname) {
     for (Fach fach : faecher) {
       if (fach.getFachname().equals(fachname)) {
         fach.loescheNote(stelle);
@@ -105,6 +106,17 @@ public class Notenverwaltung {
       }
     }
   }
+  
+  public void noteAendern(Note note, String fachname, int stelle) {
+    for (Fach fach : faecher) {
+      if (fach.getFachname().equals(fachname)) {
+        fach.aenderNote(note, stelle);
+        speichern();
+        return;
+      }
+    }  
+  }
+
   
   //läd die gespeicherten Noten- und Fachdaten aus der XML-Datei
   private void laden() {
@@ -203,4 +215,5 @@ public class Notenverwaltung {
       System.out.println("Datei konnte nicht gespeichert werden!");
     }
   }
+}
 }
