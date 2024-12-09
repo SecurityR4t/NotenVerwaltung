@@ -59,9 +59,8 @@ public class Fach {
   // löscht eine Note aus der Liste und lässt die Leerstelle in der Liste
   // verschwinden
   public void loescheNote(int stelle) {
-    // Fehlerabfrage, wenn der Benutzer mist macht
-    System.out.println(this.noten.size());
     if (stelle <= this.noten.size()) {
+      // löscht Note an ausgwählter stelle
       noten.remove(stelle);
     }
   }
