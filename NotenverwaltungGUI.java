@@ -335,6 +335,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     pnl_Noten.add(btn_Datei_waehlen);
     
     btn_Note_Loeschen.setBounds(280, 280, 91, 25);
+    btn_Note_Loeschen.setForeground(FARBENOTE);
     btn_Note_Loeschen.setText("Note Löschen");
     btn_Note_Loeschen.setMargin(new Insets(2, 2, 2, 2));
     
@@ -377,7 +378,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
   }
 
   private void btn_Note_Loeschen_ActionPerformed(ActionEvent evt) {
-    System.out.println("TEst");
+    nv.noteLoeschen(nfd_LoescheNummer.getInt());
   }
 
   
@@ -435,6 +436,8 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       
     }
     pnl_Noten.add(btn_Datei_waehlen);
+    pnl_Noten.add(btn_Note_Loeschen);
+    pnl_Noten.add(btn_Note_Loeschen);
     pnl_Noten.revalidate();
     pnl_Noten.repaint();
     pnl_Noten.setVisible(true);
