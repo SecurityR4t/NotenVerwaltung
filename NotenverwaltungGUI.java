@@ -384,7 +384,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
 
   private void btn_Note_loeschen_ActionPerformed(ActionEvent evt) {
     // lässt die Note löschen
-    nv.noteLoeschen(nfd_LoescheNummer.getInt());
+    nv.noteLoeschen(nfd_LoescheNummer.getInt(), getSelectedRadioButton(buttongroup));
     // lässt das ausgewählte Fach neu darstellen
     cbx_Fach_ausgewaehlt_ActionPerformed(new ActionEvent(this, 56465, getSelectedRadioButton(buttongroup)));
     nfd_LoescheNummer.setText("Index");
