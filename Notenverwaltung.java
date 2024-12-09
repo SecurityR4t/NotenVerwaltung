@@ -97,15 +97,14 @@ public class Notenverwaltung {
     }  
   }
   
-  public void noteLoeschen(int stelle) {
+   public void noteLoeschen(int stelle) {
     int i = 0;
     for (Fach fach : faecher) {
-      i++;
-      System.out.println(stelle);
       if (i == stelle) {
         fach.loescheNote(stelle);
-        return;
+        speichern();
       }
+      i++;
     }
   }
   
