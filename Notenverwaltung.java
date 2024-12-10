@@ -1,4 +1,3 @@
-import java.io.File;
 import java.util.List;
 import java.util.Vector;
 
@@ -71,18 +70,16 @@ public class Notenverwaltung {
     }
     return faechernamen;
   }
-
   
-//<ahmet> Löscht ein Fach aus der Liste Faecher
-public void FachLoeschen(String fachname) {
+  //<ahmet> Löscht ein Fach aus der Liste Faecher
+  public void FachLoeschen(String fachname) {
     for (int i = 0; i < faecher.size(); i++) {
         if (faecher.get(i).getFachname().equals(fachname)){
           faecher.remove(i);
           speichern();
         }
     }
-}
-
+  }
   
   public List<Note> getNoten(String fachname){
     for(int i = 0; i < this.faecher.size(); i++){
@@ -95,7 +92,7 @@ public void FachLoeschen(String fachname) {
   //neues Fach hinzufügen
   public void neuesFach(Fach fach) {
     faecher.add(fach);
-    speichern();
+    speichern(datei);
   }
   
   //neue Note hinzufügen
@@ -103,7 +100,7 @@ public void FachLoeschen(String fachname) {
     for (Fach fach : faecher) {
       if (fach.getFachname().equals(fachname)) {
         fach.neueNote(note);
-        speichern();
+        speichern(datei);
         return;
       }
     }  
@@ -114,21 +111,27 @@ public void FachLoeschen(String fachname) {
     for (Fach fach : faecher) {
       if (fach.getFachname().equals(fachname)) {
         fach.loescheNote(stelle);
-        speichern();
+        speichern(datei);
       }
     }
   }
   
+  // Note ändern
   public void noteAendern(Note note, String fachname, int stelle) {
     for (Fach fach : faecher) {
       if (fach.getFachname().equals(fachname)) {
         fach.aenderNote(note, stelle);
-        speichern();
+        speichern(datei);
         return;
       }
     }  
   }
-
+  
+  // wird als Umweg für andere Classen benötigt um speichern() zu rufen
+  public void umwegZuSpeichern(File name) {
+    speichern(name);
+    return;
+  }
   
   //läd die gespeicherten Noten- und Fachdaten aus der XML-Datei
   private void laden() {
@@ -177,7 +180,7 @@ public void FachLoeschen(String fachname) {
   }
   
   // speichert alle Nutzereingaben in eine XML-Datei
-  private void speichern() {
+  private void speichern(File dateiName) {
     try {
       //XML-Dokument vorbereiten
       DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -185,7 +188,7 @@ public void FachLoeschen(String fachname) {
       Document doc = docBuilder.newDocument();
       
       //XML-Dokument mit Daten füllen
-      Element schueler = doc.createElement(datei.getName());
+      Element schueler = doc.createElement(dateiName.getName());
       doc.appendChild(schueler);
       
       //für alle Fächer
@@ -194,7 +197,6 @@ public void FachLoeschen(String fachname) {
         Element f = doc.createElement(fach.getFachname());
         f.setAttribute("notenwunsch", fach.getNotenziel() + "");
         schueler.appendChild(f);
-        
         //für alle Noten
         for (int i = 0; i < fach.getAnzahlNoten(); i++) {
           Element note = doc.createElement("Note");
@@ -219,7 +221,8 @@ public void FachLoeschen(String fachname) {
       Transformer transformer = transformerFactory.newTransformer();
       DOMSource source = new DOMSource(doc);
       //Ziel setzen
-      StreamResult result = new StreamResult(this.datei);
+      System.out.println(dateiName);
+      StreamResult result = new StreamResult(dateiName);
       //Datei schreiben
       transformer.transform(source, result);
       
@@ -228,4 +231,3 @@ public void FachLoeschen(String fachname) {
     }
   }
 }
-
