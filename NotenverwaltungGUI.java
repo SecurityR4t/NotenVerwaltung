@@ -70,6 +70,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     private JNumberField nfd_indexNummer = new JNumberField();
   private JButton btn_Note_aendern = new JButton();
     private JLabel lblNoteaendern = new JLabel();
+  private JButton btn_File_save = new JButton();
   // end attributes
     private JFileChooser jfco = new JFileChooser();
 
@@ -79,8 +80,8 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     // Frame-Initialisierung
     super(title);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 768; 
-    int frameHeight = 501;
+    int frameWidth = 600; 
+    int frameHeight = 500;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -148,18 +149,20 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
         nfd_indexNummer_MouseEntered(evt);
       }
     });
+      
+    btn_File_save.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        btn_File_save_ActionPerformed(evt);
+      }
+    });
     
-    // start components
-    btnFachLoeschen.setBounds(96, 184, 123, 41);
-    btnFachLoeschen.setText("Fach loeschen");
-    btnFachLoeschen.setMargin(new Insets(2, 2, 2, 2));
     btnFachLoeschen.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
         btnFachLoeschen_ActionPerformed(evt);
       }
     });
-    btnFachLoeschen.setFont(new Font("Dialog", Font.BOLD, 13));
-    pnl_Noten.add(btnFachLoeschen);
+    
+    // start components
     // end components
   // start methods
   }
@@ -172,14 +175,16 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       
   public void aktualisiereDaten(File datei) {
     //Wenn die Datei nicht die Standarddatei ist
+    
     if (!datei.getName().equals("default.xml")){
-      //AML auslesen und alle alten Elemente löschen
-      nv = new Notenverwaltung(datei);
       pnl_Faecher.removeAll();
       pnl_Fach_hinzufuegen.removeAll();
       pnl_Noten.removeAll();
       pnl_Note_hinzufuegen.removeAll();
+      nv = new Notenverwaltung(datei);
+      System.out.println(datei);
     }
+    
     
     //Elemente der graphischen Benutzeroberfläche einstellen
     //Elemente der Fächerliste
@@ -368,15 +373,28 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     btn_Note_loeschen.setMargin(new Insets(2, 2, 2, 2));
     
     btn_Note_loeschen.setFont(new Font("Dialog", Font.PLAIN, 13));
-    pnl_Noten.add(btn_Note_loeschen); 
-
+    pnl_Noten.add(btn_Note_loeschen);
+    
+    btn_File_save.setBounds(296, 24, 105, 25);
+    btn_File_save.setForeground(FARBENOTE);
+    btn_File_save.setText("Datei speichern");
+    btn_File_save.setMargin(new Insets(2, 2, 2, 2));
+    btn_File_save.setText("Name ändern");
+    btn_File_save.setToolTipText("Datei Namen ändern und Pfad ändern");
+    pnl_Noten.add(btn_File_save);
+    
+    btnFachLoeschen.setBounds(96, 184, 123, 41);
+    btnFachLoeschen.setText("Fach loeschen");
+    btnFachLoeschen.setMargin(new Insets(2, 2, 2, 2));
+    btnFachLoeschen.setFont(new Font("Dialog", Font.BOLD, 13));
+    pnl_Noten.add(btnFachLoeschen);
+    
     if (!datei.getName().equals("default.xml")){
       pnl_Faecher.repaint();
       pnl_Fach_hinzufuegen.repaint();
       pnl_Noten.repaint();
       pnl_Note_hinzufuegen.repaint();
     }
-
   }
 
   // Anfang Methoden
@@ -388,6 +406,16 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       return null;
     }
   }
+  
+  public String ifcoSaveFilename() {
+    jfco.setDialogTitle("Speichere Datei");
+    if (jfco.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+      return jfco.getSelectedFile() + ".xml";
+    } else {
+      return null;
+    }
+  }
+
 
   public String getSelectedRadioButton(ButtonGroup bg) {
     for (java.util.Enumeration<AbstractButton> e = bg.getElements(); e
@@ -495,15 +523,16 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       
     }
     pnl_Noten.add(btn_Datei_waehlen);
+    pnl_Noten.add(btn_File_save);
     pnl_Noten.add(btn_Note_loeschen);
     pnl_Noten.add(nfd_indexNummer);
     pnl_Noten.add(lblNoteLoeschen);
     pnl_Noten.add(btn_Note_aendern);
+    pnl_Noten.add(btnFachLoeschen);
     pnl_Noten.add(lblNoteaendern);
     pnl_Noten.revalidate();
     pnl_Noten.repaint();
     pnl_Noten.setVisible(true);
-    pnl_Noten.add(btnFachLoeschen);
   }
 
   public void btn_Fach_hinzufuegen_ActionPerformed(ActionEvent evt) {
@@ -587,21 +616,24 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     this.cbx_klausur.setSelected(false);   
   }
   
+  // setzt die Datei auf die im Filechooser gewählte Datei
   public void btn_Datei_waehlen_ActionPerformed(ActionEvent evt) {
     this.aktualisiereDaten(new File(jfcoOpenFilename()));
-
-  // end methods
   }
   
+  // gibt die aktuelle Datei zum speichern weiter    
+  public void btn_File_save_ActionPerformed(ActionEvent evt) {
+    nv.umwegZuSpeichern(new File(ifcoSaveFilename()));
+  } // end of btn_File_save_ActionPerformed    
+  
   //<ahmet>
- public void btnFachLoeschen_ActionPerformed(ActionEvent evt) {
+  public void btnFachLoeschen_ActionPerformed(ActionEvent evt) {
     String selectedFach = getSelectedRadioButton(buttongroup);
-    
     nv.FachLoeschen(selectedFach);
     this.aktualisiereDaten(datei);
-}
-//
-
+  }  
+  
+  // löscht den Hinweis beim mit dem Mauszeiger über dem nfd Schweben
   public void nfd_indexNummer_MouseEntered(MouseEvent evt) {
     nfd_indexNummer.setText("");
   } // end of nfd_indexNummer_MouseEntered
