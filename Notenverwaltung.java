@@ -71,6 +71,18 @@ public class Notenverwaltung {
     }
     return faechernamen;
   }
+
+  
+//<ahmet> Löscht ein Fach aus der Liste Faecher
+public void FachLoeschen(String fachname) {
+    for (int i = 0; i < faecher.size(); i++) {
+        if (faecher.get(i).getFachname().equals(fachname)){
+          faecher.remove(i);
+          speichern();
+        }
+    }
+}
+
   
   public List<Note> getNoten(String fachname){
     for(int i = 0; i < this.faecher.size(); i++){
@@ -216,4 +228,4 @@ public class Notenverwaltung {
     }
   }
 }
-}
+
