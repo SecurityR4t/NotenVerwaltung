@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.List;
 import java.util.Vector;
 
@@ -74,10 +75,10 @@ public class Notenverwaltung {
   //<ahmet> Löscht ein Fach aus der Liste Faecher
   public void FachLoeschen(String fachname) {
     for (int i = 0; i < faecher.size(); i++) {
-        if (faecher.get(i).getFachname().equals(fachname)){
-          faecher.remove(i);
-          speichern();
-        }
+      if (faecher.get(i).getFachname().equals(fachname)){
+        faecher.remove(i);
+        speichern(datei);
+      }
     }
   }
   
@@ -221,7 +222,6 @@ public class Notenverwaltung {
       Transformer transformer = transformerFactory.newTransformer();
       DOMSource source = new DOMSource(doc);
       //Ziel setzen
-      System.out.println(dateiName);
       StreamResult result = new StreamResult(dateiName);
       //Datei schreiben
       transformer.transform(source, result);
