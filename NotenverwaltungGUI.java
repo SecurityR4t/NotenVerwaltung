@@ -185,7 +185,6 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       System.out.println(datei);
     }
     
-    
     //Elemente der graphischen Benutzeroberfläche einstellen
     //Elemente der Fächerliste
     lblFaecher.setBounds(24, 8, 44, 20);
@@ -312,11 +311,9 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     pnl_Note_hinzufuegen.add(lblFach);
     
     ddMenuFach.removeAllItems();                             // !! <Tom> Ergänzung: leerung der cbx vor erneuter Ergänzung 
-    
     ddMenuFach.setBounds(112, 128, 145, 24);
     for (int i = 0; i < nv.getAnzahlFaecher(); i++) {
       ddMenuFach.addItem(nv.getFachname(i));
-      
     }
     ddMenuFach.setFont(new Font("Dialog", Font.PLAIN, 13));
     pnl_Note_hinzufuegen.add(ddMenuFach);
@@ -628,8 +625,20 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
   
   //<ahmet>
   public void btnFachLoeschen_ActionPerformed(ActionEvent evt) {
-    String selectedFach = getSelectedRadioButton(buttongroup);
-    nv.FachLoeschen(selectedFach);
+    nv.FachLoeschen(getSelectedRadioButton(buttongroup)); 
+    int i = 0;
+    for (java.util.Enumeration<AbstractButton> e = buttongroup.getElements(); e.hasMoreElements();) {
+      AbstractButton b = e.nextElement();
+      
+      if (b.isSelected()) {
+        pnl_Faecher.remove(b);
+        pnl_Faecher.remove(wunschnoten.get(i));
+        pnl_Faecher.revalidate();
+        pnl_Faecher.repaint();
+        break;
+      }
+      i++;
+    }
     this.aktualisiereDaten(datei);
   }  
   
@@ -639,5 +648,4 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
   } // end of nfd_indexNummer_MouseEntered
 
   // Ende Methoden
-
 } 
