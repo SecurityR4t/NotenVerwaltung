@@ -16,8 +16,8 @@
 
 ## schwer  
 
- - [ ] Fehler der Software finden und beheben (5P. - 10P. Lehrer nachfragen)  
- - [ ] Fächer löschen (10 P.)  
- - [ ] Noten ändern / löschen (10P.)  
- - [ ] Datei speichern einbauen (20P.)  
+ - [x] Fehler der Software finden und beheben (5P. - 10P. Lehrer nachfragen)  
+ - [x] Fächer löschen (10 P.)  
+ - [x] Noten ändern / löschen (10P.)  
+ - [x] Datei speichern einbauen (20P.)  
   
