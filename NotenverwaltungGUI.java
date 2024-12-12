@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
+import javax.swing.AbstractButton;
 
 /**
  * 
@@ -175,6 +176,13 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       
   public void aktualisiereDaten(File datei) {
     //Wenn die Datei nicht die Standarddatei ist
+    wunschnoten.clear();
+    faecher.clear();
+    buttongroup.clearSelection();
+    for (AbstractButton button : java.util.Collections.list(buttongroup.getElements())) {
+      buttongroup.remove(button); 
+    } // end of for
+    pnl_Faecher.removeAll();
     
     if (!datei.getName().equals("default.xml")){
       pnl_Faecher.removeAll();
@@ -198,7 +206,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     lblWNote.setForeground(FARBEFACH);
     lblWNote.setFont(new Font("Dialog", Font.PLAIN, 13));
     pnl_Faecher.add(lblWNote);
-    //Checkboxen mit Fächern
+    //Checkboxen mit Fächern 
     for (int i = 0; i < nv.getAnzahlFaecher(); i++) {
       // Checkbox mit Fachnamen
       faecher.add(new JRadioButton());
@@ -635,17 +643,17 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
         pnl_Faecher.remove(wunschnoten.get(i));
         pnl_Faecher.revalidate();
         pnl_Faecher.repaint();
-        break;
+        this.aktualisiereDaten(datei);
+        return;
       }
       i++;
     }
-    this.aktualisiereDaten(datei);
   }  
-  
   // löscht den Hinweis beim mit dem Mauszeiger über dem nfd Schweben
   public void nfd_indexNummer_MouseEntered(MouseEvent evt) {
     nfd_indexNummer.setText("");
   } // end of nfd_indexNummer_MouseEntered
 
   // Ende Methoden
+
 } 
