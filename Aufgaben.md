@@ -4,10 +4,10 @@
 
  - [ ] Hintergrundfarben ändern (1P.)  
  - [ ] Textfarbe ändern (1P.)  
- - [ ] Fenstertitel ändern (1P.)  
+ - [x] Fenstertitel ändern (1P.)  
  - [ ] Fenstergröße beim Starten anpassen (1P.)  
  - [ ] Notenpunkte durch Note mit Tendenz ersetzen (z.B. 13 -> 1-) (2P.)  
- - [ ] Felderbeschriftungen bei 'Note hinzufügen' rechtsbündig anbringen (2P.)
+ - [x] Felderbeschriftungen bei 'Note hinzufügen' rechtsbündig anbringen (2P.)
 
 ## mittel  
 
