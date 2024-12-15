@@ -12,7 +12,7 @@
 ## mittel  
 
  - [ ] Textfarben bei der (Wunsch-) Note ändern (3P.)  
- - [ ] Klausuren farbig Kennzeichnen (3P.) (ahmet)
+ - [ ] Klausuren farbig Kennzeichnen (3P.)
 
 ## schwer  
 
