@@ -7,9 +7,7 @@
   */
 
 public class NotenverwaltungStart {
-
   public static void main(String[] args) {
-    new NotenverwaltungGUI("Notenverwaltung", new java.io.File("default.xml"));
-
+    new NotenverwaltungGUI("Notenverwaltungsprogramm", new java.io.File("default.xml"));
   }
 }

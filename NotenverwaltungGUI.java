@@ -264,7 +264,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     lblWunschnote.setFont(new Font("Dialog", Font.PLAIN, 13));
     pnl_Fach_hinzufuegen.add(lblWunschnote);
     nfd_wunschnote.setBounds(8, 96, 169, 24);
-    nfd_wunschnote.setText("");
+    nfd_wunschnote.setText("");                                  
     nfd_wunschnote.setFont(new Font("Dialog", Font.PLAIN, 13));
     pnl_Fach_hinzufuegen.add(nfd_wunschnote);
     btn_Fach_hinzufuegen.setBounds(8, 128, 169, 25);
@@ -284,6 +284,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     lblNP.setForeground(FARBENOTEDAZU);
     lblNP.setText("Notenpunkte");
     lblNP.setFont(new Font("Dialog", Font.PLAIN, 13));
+    lblNP.setHorizontalAlignment(SwingConstants.RIGHT);
     pnl_Note_hinzufuegen.add(lblNP);
     nfd_notenpunkte.setBounds(112, 32, 145, 24);
     nfd_notenpunkte.setText("");
@@ -293,6 +294,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     lblLeistung.setForeground(FARBENOTEDAZU);
     lblLeistung.setText("Leistung");
     lblLeistung.setFont(new Font("Dialog", Font.PLAIN, 13));
+    lblLeistung.setHorizontalAlignment(SwingConstants.RIGHT);
     pnl_Note_hinzufuegen.add(lblLeistung);
     tfd_leistung.setBounds(112, 56, 145, 24);
     tfd_leistung.setText("");
@@ -302,6 +304,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     lblGewichtung.setForeground(FARBENOTEDAZU);
     lblGewichtung.setText("Gewichtung");
     lblGewichtung.setFont(new Font("Dialog", Font.PLAIN, 13));
+    lblGewichtung.setHorizontalAlignment(SwingConstants.RIGHT);
     pnl_Note_hinzufuegen.add(lblGewichtung);
     nfd_gewichtung.setBounds(112, 80, 145, 24);
     nfd_gewichtung.setText("0");
