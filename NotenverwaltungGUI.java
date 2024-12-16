@@ -422,9 +422,10 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       if (timer == selectedBtn)
         b.setSelected(true);
       timer++;
-      if (selectedBtn == 0)
+      if (selectedBtn == 0) {
         b.setSelected(true);
         selectedBtn = -1;
+      }
     }   
   
       
