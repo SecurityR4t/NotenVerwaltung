@@ -160,12 +160,6 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       }
     });
     
-    tfd_indexNummer.addMouseListener(new MouseAdapter() { 
-      public void mouseEntered(MouseEvent evt) { 
-        tfd_indexNummer_MouseEntered(evt);
-      }
-    });
-      
     btn_File_Save.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
         btn_File_Save_ActionPerformed(evt);
@@ -175,6 +169,12 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
     btnFachLoeschen.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
         btnFachLoeschen_ActionPerformed(evt);
+      }
+    });
+    
+    tfd_indexNummer.addMouseListener(new MouseAdapter() { 
+      public void mouseClicked(MouseEvent evt) { 
+        tfd_indexNummer_MouseClicked(evt);
       }
     });
     
@@ -213,7 +213,6 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       pnl_Note_hinzufuegen.removeAll();
       pnl_Actions.removeAll();
       nv = new Notenverwaltung(datei);
-      System.out.println(datei);
     }
     
     //Elemente der graphischen Benutzeroberfläche einstellen
@@ -422,7 +421,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       if (timer == selectedBtn)
         b.setSelected(true);
       timer++;
-      if (selectedBtn == 0) {
+      if (selectedBtn == 0) { 
         b.setSelected(true);
         selectedBtn = -1;
       }
@@ -437,7 +436,12 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       pnl_Actions.repaint();
     }
     
-    cbx_Fach_ausgewaehlt_ActionPerformed(new ActionEvent(this, 56465, (String) this.getSelectedRadioButton(buttongroup)));
+    try {
+      cbx_Fach_ausgewaehlt_ActionPerformed(new ActionEvent(this, 56465, (String) this.getSelectedRadioButton(buttongroup)));
+    } catch (Exception e) {
+      return;  
+    }
+    
   }
 
   // Anfang Methoden
@@ -586,7 +590,7 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
   public void btn_Fach_hinzufuegen_ActionPerformed(ActionEvent evt) {
     int i = nv.getAnzahlFaecher();
     
-    // <ahmet> Ergänzung das Fächer keine Wunschnote über ( <Tom>15 ) haben darf und keine doppelten Namen
+    // <ahmet> Ergänzung das Fächer keine Wunschnote über 15 haben darf und keine doppelten Namen
     //// 
     String[] vorhandeneFaecher = nv.getFaecherListe();    
     String neuesFach = tfd_fachname.getText().toLowerCase();
@@ -692,12 +696,10 @@ public class NotenverwaltungGUI extends JFrame {  //<ahmet> alle Variablennamen 
       i++;
     }
   }  
-  // löscht den Hinweis beim mit dem Mauszeiger über dem nfd Schweben
-  public void tfd_indexNummer_MouseEntered(MouseEvent evt) {
-    if (tfd_indexNummer.getText() == "Index") {
-      tfd_indexNummer.setText("");
-    }
-  } // end of tfd_indexNummer_MouseEntered
+  // löscht den Hinweis beim mit dem Mauszeiger über dem tfd Schweben
+  public void tfd_indexNummer_MouseClicked(MouseEvent evt) {
+    tfd_indexNummer.setText("");
+  }
 
   // Ende Methoden
 
